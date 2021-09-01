@@ -1,0 +1,10 @@
+version: "3"
+services:
+  msis-salary:
+    build: .
+    ports:
+    - "8080:80"
+    #This set the port number on the Transport Layer
+    volumes:
+    - ./public:/var/www/html
+    #This tells it that the image on the HDD is the same thing as the one on the Docker container
