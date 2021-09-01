@@ -1,0 +1,5 @@
+FROM php:7.4-apache
+LABEL maintainer = "Aaron Garrett"
+#Hashtag to comment
+WORKDIR /var/www/html
+COPY public .
