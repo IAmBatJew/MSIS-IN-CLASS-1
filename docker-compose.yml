@@ -8,3 +8,6 @@ services:
     volumes:
     - ./app/public:/srv/app/public
     #This tells it that the image on the HDD is the same thing as the one on the Docker container
+    
+    env_file:
+      - ./docker/env.example
