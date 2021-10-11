@@ -76,9 +76,32 @@
             <div class="noOffers" v-if="! offers.length">
               <h3>No offers. 😥</h3>
             </div>
+
+            <form v-on:submit.prevent="postNewOffer">
+              <div class="form-group mb-3">
+                <label for="companyName">Company Name</label>
+                <input type="text" id="companyName" class="form-control" aria-describedby="companyName" placeholder="Enter Company Name" v-model="offerForm.companyName">
+              </div>
+              <div class="mb-3">
+                <label for="salary">Salary</label>
+                <input type="number" id="salary" class="form-control" aria-describedby="salaryAmount" placeholder="Enter Salary" v-model="offerForm.salary">
+              </div>
+              <div class="mb-3">
+                <label for="bonus">Bonus</label>
+                <input type="number" id="bonus" class="form-control" aria-describedby="bonusAmount" placeholder="Enter Bonus" v-model="offerForm.bonus">
+              </div>
+              <div class="form-group form-check mb-3">
+                <label for="offerDate">Offer Date</label>
+                <input type="date" class="form-control" id="offerDate" aria-describedby="offerDate" placeholder="Enter Date" v-model="offerForm.offerDate">
+                <!--<small id="dateInput" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+
           </div>
         </div>
     </div>
+
     <!--  Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
