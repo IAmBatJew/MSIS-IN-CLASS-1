@@ -4,7 +4,8 @@ const Offer = {
             "students": [],
             selectedStudent: null,
             offerForm:{},
-            "offers": []
+            "offers": [],
+            selectedOffer: null
         }
     },
 
@@ -64,10 +65,53 @@ const Offer = {
             })
         },
 
+        postOffer(evt) {
+            if(this.selectedOffer === null) {
+                this.postNewOffer(evt);
+            } else {
+                this.postEditOffer(evt);
+            }
+        },
+
+        postEditOffer(evt) {
+            this.offerForm.studentid = this.selectedStudent.id;
+            this.offerForm.id = this.selectedOffer.id;
+
+            console.log("Updating:", this.offerForm);
+            // alert("Posting!");
+    
+            fetch('api/offers/update.php', {
+                method:'POST',
+                body: JSON.stringify(this.offerForm),
+                headers: {
+                    "content-Type": "application/json; charset=utf-8"
+                }
+            })
+            .then( response => response.json() )
+            .then ( json => {
+                console.log("Returned from post:", json);
+                //TODO: test a result was returned!
+                this.offers = json;
+    
+                //Reset the form
+                this.resetOfferForm();
+            });
+        },
+
+        selectOffer(o) {
+            this.selectedOffer = o;
+            this.offerForm = Object.assign({}, this.selectedOffer);
+        },
+
+        resetOfferForm() {
+            this.selectedOffer = null;
+            this.offerForm = {};
+        },
+
         postNewOffer(evt) {
 
             this.offerForm.studentId = this.selectedStudent.id;
-            console.log("Posting:", this.offerForm);
+            console.log("Creating:", this.offerForm);
             // alert("Posting!");
     
             fetch('api/offers/create.php', {
@@ -84,9 +128,9 @@ const Offer = {
                 this.offers = json;
     
                 //Reset the form
-                this.offerForm = {};
+                this.resetOfferForm();
             });
-        },
+        }
     },
 
     created() {

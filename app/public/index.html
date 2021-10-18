@@ -69,6 +69,11 @@
                         <td>{{ prettyDollar(offer.salary) }}</td>
                         <td>{{ prettyDollar(offer.bonus) }}</td>
                         <td>{{ offer.offerDate }}</td>
+                        <td></td>
+                        <td>
+                          <button type="button" class="btn btn-outline-secondary btn-sm" v-on:click="selectOffer(offer)">Edit</button>
+                          <button type="button" class="btn btn-outline-secondary btn-sm" >Delete</button>
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -77,7 +82,8 @@
               <h3>No offers. 😥</h3>
             </div>
 
-            <form v-on:submit.prevent="postNewOffer">
+            <h3>{{selectedOffer === null ? "Add" : "Edit" }}</h3>
+            <form v-on:submit.prevent="postOffer">
               <div class="form-group mb-3">
                 <label for="companyName">Company Name</label>
                 <input type="text" id="companyName" class="form-control" aria-describedby="companyName" placeholder="Enter Company Name" v-model="offerForm.companyName">
@@ -95,8 +101,32 @@
                 <input type="date" class="form-control" id="offerDate" aria-describedby="offerDate" placeholder="Enter Date" v-model="offerForm.offerDate">
                 <!--<small id="dateInput" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
               </div>
-              <button type="submit" class="btn btn-primary">Submit</button>
+              <button type="submit" class="btn btn-primary">{{selectedOffer === null ? "Add" : "Edit" }}</button>
+              <button type="button" class="btn btn-outline-secondary" 
+              v-if="selectedOffer"
+              v-on:click="resetOfferForm">Cancel</button>
             </form>
+
+            <!-- <form v-on:submit.prevent="postNewOffer">
+              <div class="form-group mb-3">
+                <label for="companyName">Company Name</label>
+                <input type="text" id="companyName" class="form-control" aria-describedby="companyName" placeholder="Enter Company Name" v-model="offerForm.companyName">
+              </div>
+              <div class="mb-3">
+                <label for="salary">Salary</label>
+                <input type="number" id="salary" class="form-control" aria-describedby="salaryAmount" placeholder="Enter Salary" v-model="offerForm.salary">
+              </div>
+              <div class="mb-3">
+                <label for="bonus">Bonus</label>
+                <input type="number" id="bonus" class="form-control" aria-describedby="bonusAmount" placeholder="Enter Bonus" v-model="offerForm.bonus">
+              </div>
+              <div class="form-group form-check mb-3">
+                <label for="offerDate">Offer Date</label>
+                <input type="date" class="form-control" id="offerDate" aria-describedby="offerDate" placeholder="Enter Date" v-model="offerForm.offerDate">
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form> 
+          -->
 
           </div>
         </div>

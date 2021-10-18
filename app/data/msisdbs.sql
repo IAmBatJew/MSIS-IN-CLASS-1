@@ -29,9 +29,9 @@ offerDate date NOT NULL DEFAULT (CURRENT_DATE)
 );
 
 INSERT INTO offers(id, studentId, companyName, salary, bonus, offerDate) VALUES
-(1,2,'KPMG',95000,5000, 2021-10-01),
-(2,3,'EY',100000,2500, 2021-10-03),
-(3,2,'PWC',89000,10000, 2021-09-05);
+(1,2,'KPMG',95000,5000, '2021-10-01'),
+(2,3,'EY',100000,2500, '2021-10-03'),
+(3,2,'PWC',89000,10000, '2021-09-05');
 
 CREATE TABLE bookList (
 	id int PRIMARY KEY AUTO_INCREMENT ,
