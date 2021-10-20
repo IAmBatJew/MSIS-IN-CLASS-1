@@ -108,6 +108,31 @@ const Offer = {
             this.offerForm = {};
         },
 
+        postDeleteOffer(o) {
+
+            ///Use "prompt" instead of confirm to have them type in a response, not just a clickable button
+            if (!confirm("Are you sure you want to dlete the offer from "+o.compnayName+"?")){
+                return; 
+            }
+
+            fetch('api/offers/delete.php', {
+                method:'POST',
+                body: JSON.stringify(o),
+                headers: {
+                    "content-Type": "application/json; charset=utf-8"
+                }
+            })
+            .then( response => response.json() )
+            .then ( json => {
+                console.log("Returned from post:", json);
+                //TODO: test a result was returned!
+                this.offers = json;
+    
+                //Reset the form
+                this.resetOfferForm();
+            });
+        },
+
         postNewOffer(evt) {
 
             this.offerForm.studentId = this.selectedStudent.id;
