@@ -1,9 +1,6 @@
-const Offer = {
+const Report = {
     data() {
         return {
-            "students": [],
-            selectedStudent: null,
-            offerForm:{},
             "offers": [],
             selectedOffer: null
         }
@@ -18,7 +15,7 @@ const Offer = {
 
     methods: {
 
-       fetchOfferData(s){
+       fetchOfferData(){
             fetch('/api/report')
             .then( response => response.json())
             .then( (responseJson) => {
@@ -39,4 +36,4 @@ const Offer = {
     }
 }
 
-Vue.createApp(Offer).mount('#reportApp')
+Vue.createApp(Report).mount('#reportApp')

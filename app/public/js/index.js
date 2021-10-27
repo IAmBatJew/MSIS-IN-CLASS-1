@@ -154,7 +154,11 @@ const Offer = {
     
                 //Reset the form
                 this.resetOfferForm();
-            });
+            })
+
+            .catch( err => {
+                alert("Something went horribly wrong!");
+              });
         }
     },
 

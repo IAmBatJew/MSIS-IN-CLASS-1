@@ -15,15 +15,15 @@ $vars = [];
 $stmt = $db->prepare($sql);
 $stmt->execute($vars);
 
-$patients = $stmt->fetchAll();
+$offers = $stmt->fetchAll();
 
 if(isset($_GET['format']) && $_GET['format']=='csv') {
     header('Content-Type: text/csv');
 
     echo "Name,Username,MaxSalary,OfferCount\r\n";
 
-    foreach($patients as $o) {
-        echo "\""$o['name']."\""','
+    foreach($offers as $o) {
+        echo "\"".$o['name']."\","
             .$o['username'].','
             .$o['maxSalary'].','
             .$o['offerCount']."\r\n";
@@ -31,7 +31,7 @@ if(isset($_GET['format']) && $_GET['format']=='csv') {
 }
 else{
     // Step 3: Convert to JSON
-$json = json_encode($patients, JSON_PRETTY_PRINT);
+$json = json_encode($offers, JSON_PRETTY_PRINT);
 
 // Step 4: Output
 header('Content-Type: application/json');
