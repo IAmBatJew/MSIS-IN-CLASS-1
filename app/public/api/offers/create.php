@@ -34,8 +34,8 @@ $db = DbConnection::getConnection();
 // Step 2: Create & run the query
 // Note the use of parameterized statements to avoid injection
 $stmt = $db->prepare(
-  'INSERT INTO offers (studentId, companyName, salary, bonus, offerDate)
-  VALUES (?, ?, ?, ?, ?)'
+  'INSERT INTO offers (studentId, companyName, salary, bonus, offerDate, status)
+  VALUES (?, ?, ?, ?, ?,?)'
 );
 
 $stmt->execute([
@@ -43,7 +43,8 @@ $stmt->execute([
   $_POST['companyName'],
   $_POST['salary'],
   $_POST['bonus'],
-  $_POST['offerDate']
+  $_POST['offerDate'],
+  $_POST['status']
 ]);
 
 // Get auto-generated PK from DB

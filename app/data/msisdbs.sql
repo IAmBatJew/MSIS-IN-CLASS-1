@@ -28,10 +28,18 @@ bonus int NOT NULL DEFAULT 0,
 offerDate date NOT NULL DEFAULT (CURRENT_DATE)
 );
 
+ALTER TABLE offers 
+	ADD COLUMN status enum ('Accepted', 'Declined')
+    NOT NULL DEFAULT 'Declined';
+
 INSERT INTO offers(id, studentId, companyName, salary, bonus, offerDate) VALUES
 (1,2,'KPMG',95000,5000, '2021-10-01'),
 (2,3,'EY',100000,2500, '2021-10-03'),
 (3,2,'PWC',89000,10000, '2021-09-05');
+
+SELECT name, username, MAX(salary) AS maxSalary, COUNT(salary) AS offerCount
+FROM students LEFT OUTER JOIN offers ON students.id = offers.studentId
+GROUP BY username, name;
 
 CREATE TABLE bookList (
 	id int PRIMARY KEY AUTO_INCREMENT ,

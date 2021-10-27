@@ -86,21 +86,28 @@
             <h3>{{selectedOffer === null ? "Add" : "Edit" }}</h3>
             <form v-on:submit.prevent="postOffer">
               <div class="form-group mb-3">
-                <label for="companyName">Company Name</label>
-                <input type="text" id="companyName" class="form-control" aria-describedby="companyName" placeholder="Enter Company Name" v-model="offerForm.companyName">
+                <label for="companyName">Company Name</label><span class="reqd">*</span>
+                <input type="text" id="companyName" class="form-control" aria-describedby="companyName" placeholder="Enter Company Name" v-model="offerForm.companyName" required="required">
               </div>
               <div class="mb-3">
-                <label for="salary">Salary</label>
-                <input type="number" id="salary" class="form-control" aria-describedby="salaryAmount" placeholder="Enter Salary" v-model="offerForm.salary">
+                <label for="salary">Salary</label><span class="reqd">*</span>
+                <input type="number" id="salary" class="form-control" aria-describedby="salaryAmount" placeholder="Enter Salary" v-model="offerForm.salary" required="required">
               </div>
               <div class="mb-3">
-                <label for="bonus">Bonus</label>
-                <input type="number" id="bonus" class="form-control" aria-describedby="bonusAmount" placeholder="Enter Bonus" v-model="offerForm.bonus">
+                <label for="bonus">Bonus</label><span class="reqd">*</span>
+                <input type="number" id="bonus" class="form-control" aria-describedby="bonusAmount" placeholder="Enter Bonus" v-model="offerForm.bonus" required="required">
               </div>
               <div class="form-group form-check mb-3">
-                <label for="offerDate">Offer Date</label>
-                <input type="date" class="form-control" id="offerDate" aria-describedby="offerDate" placeholder="Enter Date" v-model="offerForm.offerDate">
+                <label for="offerDate">Offer Date</label><span class="reqd">*</span>
+                <input type="date" class="form-control" id="offerDate" aria-describedby="offerDate" placeholder="Enter Date" v-model="offerForm.offerDate" required="required">
                 <!--<small id="dateInput" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+              </div>
+              <div class="mb-3">
+                <label for="status">Status</label><span class="reqd">*</span>
+                <select type="select" id="bonus" class="form-select" aria-describedby="bonusAmount" placeholder="Enter Status" v-model="offerForm.status" required="required">
+                  <option value="Declined">Declined</option>
+                  <option value="Accepted">Accepted</option>
+                  </select>
               </div>
               <button type="submit" class="btn btn-primary">{{selectedOffer === null ? "Add" : "Edit" }}</button>
               <button type="button" class="btn btn-outline-secondary" 

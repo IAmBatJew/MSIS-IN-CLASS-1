@@ -18,3 +18,11 @@ body {}
 .studentName{
     color: lightcoral;
 }
+
+.req {
+    color: red;
+}
+
+#req {
+    color: red;
+}
